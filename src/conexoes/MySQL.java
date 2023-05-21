@@ -1,47 +1,32 @@
 package conexoes;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.mysql.jdbc.Driver;
-import java.sql.ResultSet;
-/**
- *
- * @author Macrr
- */
+import java.sql.Statement;
+
 public class MySQL {
-    
-    //atributos de conexão com o banco
-    private Connection conn = null; //variável de conexão com o banco
-    private Statement statement; //variável de manipulação do SQL
+
+    private Connection conn;
+    private Statement statement;
     private ResultSet resultSet;
-    
+
     private String servidor = "localhost:3306";
     private String nomeDoBanco = "Paodaria";
     private String usuario = "root";
     private String senha = "142536";
-    
-    //Construtor    
-    public MySQL(){
-    
+
+    public MySQL() {
     }
-    
-    public MySQL(String servidor, String nomeDoBanco, String usuario, String senha){
+
+    public MySQL(String servidor, String nomeDoBanco, String usuario, String senha) {
         this.servidor = servidor;
         this.nomeDoBanco = nomeDoBanco;
         this.usuario = usuario;
         this.senha = senha;
     }
-    
+
     public Connection getConn() {
         return conn;
     }
@@ -65,80 +50,71 @@ public class MySQL {
     public void setResultSet(ResultSet resultSet) {
         this.resultSet = resultSet;
     }
-        
-    public void conectaBanco(){
-        try {
-            //Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            conn = DriverManager.getConnection("jdbc:mysql://" + servidor + "/" + nomeDoBanco, usuario, senha);
-            //conn = DriverManager.getConnection("jdbc:mysql://localhost3306/banco_loja", "root", "root");
-            
-            if(conn != null){
-                System.out.println("Conexão efetuada com sucesso! " + "ID: " + conn);
-            }            
-            
-        } catch (Exception e) {
+    public void conectaBanco() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://" + servidor + "/" + nomeDoBanco + "?useSSL=false", usuario, senha);
+
+            if (conn != null) {
+                System.out.println("Conexão efetuada com sucesso! ID: " + conn);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Conexão não realizada - ERRO: " + e.getMessage());
         }
     }
-    
-    public boolean fechaBanco(){
+
+    public boolean fechaBanco() {
         try {
-            conn.close();
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
             return true;
-        } catch (Exception e) {
-            System.out.println("Erro ao fechar conexao " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erro ao fechar conexão: " + e.getMessage());
             return false;
         }
     }
-    
-    public int insertSQL(String SQL){
+
+    public int insertSQL(String sql) {
         int status = 0;
         try {
-            //createStatement de con para criar o Statement
-            this.setStatement(getConn().createStatement());            
-
-            // Definido o Statement, executamos a query no banco de dados
-            this.getStatement().executeUpdate(SQL);            
-        
-            return status;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return status;
+            statement = conn.createStatement();
+            status = statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return status;
     }
-    
+
     public void executarSQL(String sql) {
         try {
-            this.statement = conn.createStatement(
-                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            this.resultSet = this.statement.executeQuery(sql);
-
-//            while (this.getResultSet().next()) {
-//                System.out.println(this.getResultSet().getInt(1));
-//            }
-        } catch (SQLException sqlex) {
-            sqlex.printStackTrace();
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    
-    public boolean updateSQL(String pSQL){
-        try {            
-            //createStatement de con para criar o Statement
-            this.setStatement(getConn().createStatement());
 
-            // Definido o Statement, executamos a query no banco de dados
-            getStatement().executeUpdate(pSQL);
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+    public boolean updateSQL(String sql) {
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
         return true;
     }
-    
-   public ResultSet executarConsulta(String query) throws SQLException {
-    this.statement = this.conn.createStatement();
-    return this.statement.executeQuery(query);
-}
+
+    public ResultSet executarConsulta(String query) throws SQLException {
+        statement = conn.createStatement();
+        return statement.executeQuery(query);
+    }
 }
