@@ -7,7 +7,7 @@ public class Paodaria {
 
     public static void main(String[] args) {
         InterfaceMenu Menu = new InterfaceMenu();
-       Menu.setVisible(true);
+            Menu.setVisible(true);
          
     } 
    
