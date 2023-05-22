@@ -6,6 +6,7 @@ package Interface;
 
 import conexoes.MySQL;
 import java.awt.HeadlessException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import objetos.Cliente;
@@ -14,7 +15,7 @@ import objetos.Cliente;
  *
  * @author DELL
  */
-public class interfaceUsuario2 extends javax.swing.JFrame {
+public class InterfaceUsuario2 extends javax.swing.JFrame {
 MySQL conectar = new MySQL();
 Cliente novoCliente = new Cliente();
 
@@ -23,7 +24,7 @@ Cliente novoCliente = new Cliente();
     /**
      * Creates new form interfaceUsuario2
      */
-    public interfaceUsuario2() {
+    public InterfaceUsuario2() {
         initComponents();
         
     }
@@ -55,7 +56,7 @@ Cliente novoCliente = new Cliente();
         BtnPesquisarCPF.setBackground(new java.awt.Color(72, 107, 91));
         BtnPesquisarCPF.setFont(new java.awt.Font("Amarillo", 0, 18)); // NOI18N
         BtnPesquisarCPF.setForeground(new java.awt.Color(255, 255, 255));
-        BtnPesquisarCPF.setText("Pesquisar CPF");
+        BtnPesquisarCPF.setText("Consultar CPFS");
         BtnPesquisarCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPesquisarCPFActionPerformed(evt);
@@ -151,9 +152,26 @@ Cliente novoCliente = new Cliente();
  
     
     private void BtnPesquisarCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisarCPFActionPerformed
-        //tem algo aki
+        MySQL mysql = new MySQL();
+        mysql.conectaBanco();
         
-    }//GEN-LAST:event_BtnPesquisarCPFActionPerformed
+        ResultSet resultSet = mysql.consultarCPFs();
+        
+        StringBuilder cpfList = new StringBuilder();
+        try {
+            while (resultSet.next()) {
+                String cpf = resultSet.getString("cpf");
+                cpfList.append(cpf).append("\n");
+            }
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        
+        mysql.fechaBanco();
+        
+        JOptionPane.showMessageDialog(null, cpfList.toString(), "Lista de CPFs", JOptionPane.INFORMATION_MESSAGE);
+    }
+//GEN-LAST:event_BtnPesquisarCPFActionPerformed
 
     private void BtnAtualizarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtualizarSenhaActionPerformed
    String cpf = JOptionPane.showInputDialog(null, "Digite o CPF do cliente:");
@@ -210,20 +228,20 @@ Cliente novoCliente = new Cliente();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new interfaceUsuario2().setVisible(true);
+                new InterfaceUsuario2().setVisible(true);
             }
         });
     }

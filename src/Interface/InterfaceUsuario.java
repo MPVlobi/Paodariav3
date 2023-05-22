@@ -574,7 +574,7 @@ public class InterfaceUsuario extends javax.swing.JFrame {
             if (rs.next()) {
                 // CPF e senha correspondem, fazer o login
                 System.out.println("Ta caindo");
-                new interfaceUsuario2().setVisible(true);
+                new InterfaceUsuario2().setVisible(true);
               
             } else {
                 // CPF e senha não correspondem

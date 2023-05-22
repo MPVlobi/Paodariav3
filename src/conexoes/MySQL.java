@@ -1,10 +1,14 @@
 package conexoes;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+
 
 public class MySQL {
 
@@ -112,9 +116,21 @@ public class MySQL {
         }
         return true;
     }
-
-    public ResultSet executarConsulta(String query) throws SQLException {
+    
+    public ResultSet consultarCPFs() {
+        ResultSet resultSet = null;
+        try {
+            String sql = "SELECT cpf FROM Cliente"; // Substitua "tabela_clientes" pelo nome da tabela onde os CPFs são armazenados
+            this.statement = conn.createStatement();
+            resultSet = this.statement.executeQuery(sql);
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        return resultSet;
+    }
+     public ResultSet executarConsulta(String query) throws SQLException {
         statement = conn.createStatement();
         return statement.executeQuery(query);
     }
+    
 }
