@@ -144,12 +144,20 @@ public class MySQL {
             
             if (updateSQL(sql)) {
                 JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao excluir a conta.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
         
         fechaBanco();
+    }
+     public boolean atualizarSenhaUsuario(String usuario, String senha) {
+        // Monta o SQL para atualizar a senha do usuário
+        String sql = "UPDATE Cliente SET senha = '" + senha + "' WHERE Cpf = '" + usuario + "'";
+
+        // Executa a atualização no banco de dados
+        return updateSQL(sql);
     }
     
 }

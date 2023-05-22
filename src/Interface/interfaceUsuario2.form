@@ -63,7 +63,6 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="BtnPesquisarCPF" alignment="0" min="-2" pref="278" max="-2" attributes="0"/>
-                      <Component id="BtnAtualizarSenha" alignment="0" min="-2" pref="278" max="-2" attributes="0"/>
                       <Component id="BtnExcluirConta" alignment="0" min="-2" pref="278" max="-2" attributes="0"/>
                       <Component id="BtnSair" alignment="0" min="-2" pref="278" max="-2" attributes="0"/>
                   </Group>
@@ -83,11 +82,9 @@
                   <Component id="jLabel15" min="-2" pref="112" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="BtnPesquisarCPF" min="-2" pref="68" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="BtnAtualizarSenha" min="-2" pref="68" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="BtnExcluirConta" min="-2" pref="68" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="BtnSair" min="-2" pref="68" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -110,23 +107,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPesquisarCPFActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="BtnAtualizarSenha">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="5b" green="6b" red="48" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Amarillo" size="18" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Atualizar Senha"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAtualizarSenhaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnExcluirConta">

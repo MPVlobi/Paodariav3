@@ -6,7 +6,6 @@ package Interface;
 
 import conexoes.MySQL;
 import java.awt.HeadlessException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import objetos.Cliente;
@@ -15,7 +14,7 @@ import objetos.Cliente;
  *
  * @author DELL
  */
-public class InterfaceUsuario2 extends javax.swing.JFrame {
+public class interfaceUsuario2 extends javax.swing.JFrame {
 MySQL conectar = new MySQL();
 Cliente novoCliente = new Cliente();
 
@@ -24,7 +23,7 @@ Cliente novoCliente = new Cliente();
     /**
      * Creates new form interfaceUsuario2
      */
-    public InterfaceUsuario2() {
+    public interfaceUsuario2() {
         initComponents();
         
     }
@@ -41,7 +40,6 @@ Cliente novoCliente = new Cliente();
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         BtnPesquisarCPF = new javax.swing.JButton();
-        BtnAtualizarSenha = new javax.swing.JButton();
         BtnExcluirConta = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         BtnSair = new javax.swing.JButton();
@@ -60,16 +58,6 @@ Cliente novoCliente = new Cliente();
         BtnPesquisarCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPesquisarCPFActionPerformed(evt);
-            }
-        });
-
-        BtnAtualizarSenha.setBackground(new java.awt.Color(72, 107, 91));
-        BtnAtualizarSenha.setFont(new java.awt.Font("Amarillo", 0, 18)); // NOI18N
-        BtnAtualizarSenha.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAtualizarSenha.setText("Atualizar Senha");
-        BtnAtualizarSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAtualizarSenhaActionPerformed(evt);
             }
         });
 
@@ -105,7 +93,6 @@ Cliente novoCliente = new Cliente();
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnPesquisarCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnAtualizarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnExcluirConta, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
@@ -121,11 +108,9 @@ Cliente novoCliente = new Cliente();
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(BtnPesquisarCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(BtnAtualizarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(50, 50, 50)
                 .addComponent(BtnExcluirConta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(42, 42, 42)
                 .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -152,8 +137,7 @@ Cliente novoCliente = new Cliente();
  
     
     private void BtnPesquisarCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPesquisarCPFActionPerformed
-        MySQL mysql = new MySQL();
-        mysql.conectaBanco();
+    mysql.conectaBanco();
         
         ResultSet resultSet = mysql.consultarCPFs();
         
@@ -172,18 +156,13 @@ Cliente novoCliente = new Cliente();
         JOptionPane.showMessageDialog(null, cpfList.toString(), "Lista de CPFs", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_BtnPesquisarCPFActionPerformed
 
-    private void BtnAtualizarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtualizarSenhaActionPerformed
-   
-
-    }//GEN-LAST:event_BtnAtualizarSenhaActionPerformed
-
     private void BtnExcluirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirContaActionPerformed
     MySQL sql = new MySQL ();
         sql.excluirContaUsuarioLogado();
     }//GEN-LAST:event_BtnExcluirContaActionPerformed
 
     private void BtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSairActionPerformed
-        // MÃAAAAAAAAAAAAAAAAAAAAAAAAAO TOOOOOOOOOOOOOOOOOOOCCCCCCCCCCCCCCCCCCAAAAAAAAAAAAAAAAR
+        System.exit(0);
     }//GEN-LAST:event_BtnSairActionPerformed
 
     /**
@@ -203,26 +182,25 @@ Cliente novoCliente = new Cliente();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfaceUsuario2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceUsuario2().setVisible(true);
+                new interfaceUsuario2().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAtualizarSenha;
     private javax.swing.JButton BtnExcluirConta;
     private javax.swing.JButton BtnPesquisarCPF;
     private javax.swing.JButton BtnSair;
