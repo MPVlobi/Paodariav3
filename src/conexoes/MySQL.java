@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 
@@ -131,6 +132,24 @@ public class MySQL {
      public ResultSet executarConsulta(String query) throws SQLException {
         statement = conn.createStatement();
         return statement.executeQuery(query);
+    }
+     public void excluirContaUsuarioLogado() {
+        conectaBanco();
+        
+        String confirmacao = JOptionPane.showInputDialog(null, "Digite cpf", "Confirmação", JOptionPane.WARNING_MESSAGE);
+        
+        if (confirmacao != null && confirmacao.equalsIgnoreCase(confirmacao)) {
+            
+            String sql = "DELETE FROM Cliente WHERE Cpf = " + confirmacao; // Substitua "tabela_usuarios" pelo nome da tabela de usuários
+            
+            if (updateSQL(sql)) {
+                JOptionPane.showMessageDialog(null, "Conta excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao excluir a conta.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        fechaBanco();
     }
     
 }

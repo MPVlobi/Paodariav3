@@ -585,7 +585,7 @@ public class InterfaceUsuario extends javax.swing.JFrame {
             Logger.getLogger(InterfaceUsuario.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("teste2");
         }
-
+        
     }// GEN-LAST:event_BtnEntrarActionPerformed
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnCadastrarActionPerformed

@@ -56,7 +56,7 @@ Cliente novoCliente = new Cliente();
         BtnPesquisarCPF.setBackground(new java.awt.Color(72, 107, 91));
         BtnPesquisarCPF.setFont(new java.awt.Font("Amarillo", 0, 18)); // NOI18N
         BtnPesquisarCPF.setForeground(new java.awt.Color(255, 255, 255));
-        BtnPesquisarCPF.setText("Consultar CPFS");
+        BtnPesquisarCPF.setText("Pesquisar CPF");
         BtnPesquisarCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPesquisarCPFActionPerformed(evt);
@@ -170,41 +170,16 @@ Cliente novoCliente = new Cliente();
         mysql.fechaBanco();
         
         JOptionPane.showMessageDialog(null, cpfList.toString(), "Lista de CPFs", JOptionPane.INFORMATION_MESSAGE);
-    }
-//GEN-LAST:event_BtnPesquisarCPFActionPerformed
+    }//GEN-LAST:event_BtnPesquisarCPFActionPerformed
 
     private void BtnAtualizarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtualizarSenhaActionPerformed
-   String cpf = JOptionPane.showInputDialog(null, "Digite o CPF do cliente:");
-   MySQL mysql = new MySQL("localhost:3306", "Paodaria", "root", "142536");
-   String novaSenha = JOptionPane.showInputDialog(null, "Digite a nova senha:");
-     mysql.conectaBanco();
-    if (cpf != null && novaSenha != null) {
-    
-
-        try {
- 
-            String query = "UPDATE cliente SET senha_usuario = '" + novaSenha + "' WHERE cpf_usuario = '" + cpf + "'";
-
-       
-            int rowsAffected = mysql.getStatement().executeUpdate(query);
-
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso!", "Atualização de Senha", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "CPF não encontrado.", "Atualização de Senha", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (HeadlessException | SQLException ex) {
-        } finally {
-            mysql.fechaBanco();
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Operação cancelada.", "Atualização de Senha", JOptionPane.INFORMATION_MESSAGE);
-    }
+   
 
     }//GEN-LAST:event_BtnAtualizarSenhaActionPerformed
 
     private void BtnExcluirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirContaActionPerformed
- 
+    MySQL sql = new MySQL ();
+        sql.excluirContaUsuarioLogado();
     }//GEN-LAST:event_BtnExcluirContaActionPerformed
 
     private void BtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSairActionPerformed
